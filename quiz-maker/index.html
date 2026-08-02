@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz Maker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Online Quiz Maker</h1>
+        <nav>
+            <button onclick="showView('list-view')">Browse Quizzes</button>
+            <button onclick="showView('create-view')">Create Quiz</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- 1. Quiz List View -->
+        <section id="list-view" class="view active">
+            <h2>Available Quizzes</h2>
+            <div id="quiz-list" class="grid"></div>
+        </section>
+
+        <!-- 2. Take Quiz View -->
+        <section id="take-view" class="view">
+            <h2 id="quiz-title">Quiz</h2>
+            <div id="question-container"></div>
+            <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+            <div id="result-box" class="hidden">
+                <h3>Quiz Completed!</h3>
+                <p id="score-text"></p>
+                <button onclick="showView('list-view')">Back to Quizzes</button>
+            </div>
+        </section>
+
+        <!-- 3. Create Quiz View -->
+        <section id="create-view" class="view">
+            <h2>Create a New Quiz</h2>
+            <form id="quiz-form" onsubmit="handleCreateQuiz(event)">
+                <input type="text" id="new-title" placeholder="Quiz Title" required>
+                
+                <div id="questions-builder">
+                    <h3>Questions</h3>
+                    <!-- Question items will be inserted here -->
+                </div>
+                
+                <button type="button" onclick="addQuestionField()">+ Add Question</button>
+                <button type="submit" class="submit-btn">Publish Quiz</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
