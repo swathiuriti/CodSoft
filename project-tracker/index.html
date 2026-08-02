@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Task<span>Pulse</span></div>
+        <div class="project-selector">
+            <label for="project-select">Active Project:</label>
+            <select id="project-select" onchange="loadProjectTasks()"></select>
+            <button onclick="openModal('project-modal')">+ New Project</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="actions">
+            <h2 id="current-project-title">Project Board</h2>
+            <button class="btn-primary" onclick="openModal('task-modal')">+ Add Task</button>
+        </div>
+
+        <!-- Kanban Board Columns -->
+        <div class="kanban-board">
+            <div class="column" id="todo" ondragover="allowDrop(event)" ondrop="drop(event, 'todo')">
+                <h3>To Do</h3>
+                <div class="task-list" id="todo-list"></div>
+            </div>
+
+            <div class="column" id="in-progress" ondragover="allowDrop(event)" ondrop="drop(event, 'in-progress')">
+                <h3>In Progress</h3>
+                <div class="task-list" id="in-progress-list"></div>
+            </div>
+
+            <div class="column" id="done" ondragover="allowDrop(event)" ondrop="drop(event, 'done')">
+                <h3>Completed</h3>
+                <div class="task-list" id="done-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: New Project -->
+    <div id="project-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('project-modal')">&times;</span>
+            <h3>Create New Project</h3>
+            <form onsubmit="handleCreateProject(event)">
+                <input type="text" id="project-name" placeholder="Project Name" required>
+                <button type="submit" class="btn-primary">Create Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: New Task -->
+    <div id="task-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('task-modal')">&times;</span>
+            <h3>Assign New Task</h3>
+            <form onsubmit="handleCreateTask(event)">
+                <input type="text" id="task-title" placeholder="Task Title" required>
+                <input type="text" id="task-assignee" placeholder="Assignee Name" required>
+                <input type="date" id="task-deadline" required>
+                <button type="submit" class="btn-primary">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
