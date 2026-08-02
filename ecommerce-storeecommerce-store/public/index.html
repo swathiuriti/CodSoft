@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo">Tech<span>Store</span></div>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search products..." onkeyup="fetchProducts()">
+        </div>
+        <button class="cart-btn" onclick="toggleCart()">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </button>
+    </header>
+
+    <main class="container">
+        <!-- Category Filtering -->
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterCategory(this, 'All')">All</button>
+            <button class="filter-btn" onclick="filterCategory(this, 'Electronics')">Electronics</button>
+            <button class="filter-btn" onclick="filterCategory(this, 'Footwear')">Footwear</button>
+            <button class="filter-btn" onclick="filterCategory(this, 'Accessories')">Accessories</button>
+        </div>
+
+        <!-- Product Catalog -->
+        <section id="product-grid" class="grid"></section>
+    </main>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleCart()">&times;</span>
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items-container"></div>
+            
+            <div class="cart-summary">
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                <button class="btn-checkout" onclick="openCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mock Payment Gateway Modal -->
+    <div id="checkout-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCheckout()">&times;</span>
+            <h2>Mock Payment Gateway</h2>
+            <form onsubmit="handlePayment(event)">
+                <input type="text" placeholder="Cardholder Name" required>
+                <input type="text" placeholder="Card Number (e.g. 4532...)" required>
+                <div class="form-row">
+                    <input type="text" placeholder="MM/YY" required>
+                    <input type="text" placeholder="CVC" required>
+                </div>
+                <button type="submit" class="btn-checkout">Pay Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
