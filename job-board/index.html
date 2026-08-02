@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Career<span>Connect</span></div>
+        <nav>
+            <button onclick="switchView('candidate-view')">Candidate Portal</button>
+            <button onclick="switchView('employer-view')">Employer Dashboard</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Candidate Search & Listing Dashboard -->
+        <section id="candidate-view" class="view active">
+            <h2>Find Open Positions</h2>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search by title, company, or location..." onkeyup="fetchJobs()">
+            </div>
+            <div id="job-listings" class="grid"></div>
+        </section>
+
+        <!-- Employer Job Posting Dashboard -->
+        <section id="employer-view" class="view">
+            <h2>Post a New Opportunity</h2>
+            <form id="post-job-form" onsubmit="handlePostJob(event)">
+                <input type="text" id="job-title" placeholder="Job Title" required>
+                <input type="text" id="job-company" placeholder="Company Name" required>
+                <input type="text" id="job-location" placeholder="Location (e.g. Remote, NY)" required>
+                <textarea id="job-desc" placeholder="Job Description" rows="4" required></textarea>
+                <button type="submit" class="btn-submit">Post Listing</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Job Application Modal -->
+    <div id="apply-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modal-job-title">Apply for Position</h3>
+            <form id="apply-form" onsubmit="handleApply(event)">
+                <input type="hidden" id="apply-job-id">
+                <input type="text" id="applicant-name" placeholder="Full Name" required>
+                <input type="email" id="applicant-email" placeholder="Email Address" required>
+                <label for="applicant-resume">Upload Resume (PDF/Doc):</label>
+                <input type="file" id="applicant-resume" accept=".pdf,.doc,.docx" required>
+                <button type="submit" class="btn-submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
